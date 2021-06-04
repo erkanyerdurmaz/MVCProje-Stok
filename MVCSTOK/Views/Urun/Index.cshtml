@@ -1,0 +1,57 @@
+﻿@using MVCSTOK.Models.Entity
+@model List<TBLURUNLER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>.</th>
+            <th>ÜRÜN ID  </th>
+            <th>ÜRÜN ADI  </th>
+            <th>MARKASI  </th>
+            <th>KATEGORİ  </th>
+            <th>FİYAT  </th>
+            <th>STOK  </th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+            <th>RESİM EKLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urn in Model)
+        {
+        <tr>
+            <td>@{var dir = "/SaveImages/" + urn.UrunID + ".jpg";
+                <img src="@Url.Content(dir)" width="100" />
+                
+                
+                }</td>
+            
+            <th>@urn.UrunID   </th>
+            <td>@urn.URUNAD</td>
+            <td>@urn.MARKA</td>
+            <td>@urn.TBLKATAGORILER.KATAGORIAD</td>
+            <td>@urn.FIYAT</td>
+            <td>@urn.STOK</td>
+           
+            <td> <a href="/URUN/SIL/@urn.UrunID" class="btn btn-danger">SİL </a>  </td>
+            <td> <a href="/URUN/UrunGetir/@urn.UrunID" class="btn btn-success">GÜNCELLE </a>  </td>
+            <td> <a href="/URUN/SaveImages/@urn.UrunID" class="btn btn-warning">RESİM EKLE </a>  </td>
+        </tr>
+
+
+
+        }
+
+
+
+    </tbody>
+
+
+</table>
+
+<a href="/URUN/UrunEkle/" class="btn btn-primary">YENİ ÜRÜN EKLE </a>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
